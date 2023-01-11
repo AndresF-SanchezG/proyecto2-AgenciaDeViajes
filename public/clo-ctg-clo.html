@@ -144,70 +144,70 @@
                
        
         <form id="form" class="p-3" action="#">
+            <div id="formulario" class="">
+             <div class="w-11/12 m-auto mt-2 flex justify-center flex-col">
+                    <label class="w-11/12" for="seleccion-hotel">Elige hotel</label>
+                    <input class="w-full border border-black" list="seleccionHotel" id="seleccion-hotel" name="seleccion-hotel">
+                    <datalist id="seleccionHotel">
+                        <option value="AZUAN SUITES">
+                        <option value="COSTA DEL SOL">
+                        <option value="TOLEDO"></option>
+                        <option value="BARAONA"></option>
+                        <option value="HOTEL BAHÍA"></option>
+                        <option value="ATLANTIC CARTAGENA"></option>
+                        <option value="PLAYA CLUB"></option>
+                        <option value="DORADO PLAZA"></option>
+                        <option value="CARTAGENA PLAZA"></option>
+                        <option value="DUBAI-STANDARD"></option>
+                        <option value="DUBAI-VISTA MAR"></option>
+                        <option value="HOTEL CARIBE"></option>
+                    </datalist>
+                </div>
+    
+    
+                <div class="w-11/12 m-auto mt-2 flex justify-center flex-col">
+                    <label class="w-11/12" for="seleccion-habitacion">Elige tipo de habitacion</label>
+                    <input class="w-full border border-black" list="seleccionHabitacion" id="seleccion-habitacion" name="seleccion-habitacion">
+                    <datalist id="seleccionHabitacion">
+                        <option value="DOBLE">
+                        <option value="TRIPLE">
+                    </datalist>
+                </div>
             
-            <div class="w-11/12 m-auto mt-2 flex justify-center flex-col">
-                <label class="w-11/12" for="seleccion-hotel">Elige tipo de habitacion</label>
-                <input class="w-full border border-black" list="seleccionHotel" id="seleccion-hotel" name="seleccion-hotel">
-                <datalist id="seleccionHotel">
-                    <option value="AZUAN SUITES">
-                    <option value="COSTA DEL SOL">
-                    <option value="TOLEDO"></option>
-                    <option value="BARAONA"></option>
-                    <option value="HOTEL BAHÍA"></option>
-                    <option value="ATLANTIC CARTAGENA"></option>
-                    <option value="PLAYA CLUB"></option>
-                    <option value="DORADO PLAZA"></option>
-                    <option value="CARTAGENA PLAZA"></option>
-                    <option value="DUBAI-STANDARD"></option>
-                    <option value="DUBAI-VISTA MAR"></option>
-                    <option value="HOTEL CARIBE"></option>
-                </datalist>
-            </div>
+                <div class="w-11/12 m-auto mt-2 flex justify-center flex-col">
+                    <label class="w-11/12" for="">Digita el numero de adultos</label>
+                    <input name="cantidadAdultos" class="w-full border border-black" list="seleccionCantAdultos" id="cantidadAdultos" name="">
+                    <datalist id="seleccionCantAdultos">
+                        <option value=1>
+                        <option value=2>
+                        <option value=3></option>
+                        <option value=4></option>
+                        <option value=5></option>
+                        <option value=6></option>
+                        <option value=7></option>
+                        <option value=8></option>
+                        <option value=9></option>
+                        <option value=10></option>
+                    </datalist>
+                </div>
     
-    
-            <div class="w-11/12 m-auto mt-2 flex justify-center flex-col">
-                <label class="w-11/12" for="seleccion-habitacion">Elige tipo de habitacion</label>
-                <input class="w-full border border-black" list="seleccionHabitacion" id="seleccion-habitacion" name="seleccion-habitacion">
-                <datalist id="seleccionHabitacion">
-                    <option value="DOBLE">
-                    <option value="TRIPLE">
-                </datalist>
+                 <div class="w-11/12 m-auto mt-2 flex justify-center flex-col">
+                    <label class="w-11/12" for="">Digita el numero de niños</label>
+                    <input class="w-full border border-black" list="seleccionCantNiños" id="CantNiños" name="">
+                    <datalist id="seleccionCantNiños">
+                        <option value=1>
+                        <option value=2>
+                        <option value=3></option>
+                        <option value=4></option>
+                        <option value=5></option>
+                        <option value=6></option>
+                        <option value=7></option>
+                        <option value=8></option>
+                        <option value=9></option>
+                        <option value=10></option>
+                    </datalist>
+                </div>
             </div>
-            
-            <div class="w-11/12 m-auto mt-2 flex justify-center flex-col">
-                <label class="w-11/12" for="">Digita el numero de adultos</label>
-                <input name="cantidadAdultos" class="w-full border border-black" list="seleccionCantAdultos" id="cantidadAdultos" name="">
-                <datalist id="seleccionCantAdultos">
-                    <option value="1">
-                    <option value="2">
-                    <option value="3"></option>
-                    <option value="4"></option>
-                    <option value="5"></option>
-                    <option value="6"></option>
-                    <option value="7"></option>
-                    <option value="8"></option>
-                    <option value="9"></option>
-                    <option value="10"></option>
-                </datalist>
-            </div>
-    
-            <div class="w-11/12 m-auto mt-2 flex justify-center flex-col">
-                <label class="w-11/12" for="">Digita el numero de niños</label>
-                <input class="w-full border border-black" list="seleccionCantNiños" id="CantNiños" name="">
-                <datalist id="seleccionCantNiños">
-                    <option value="1">
-                    <option value="2">
-                    <option value="3"></option>
-                    <option value="4"></option>
-                    <option value="5"></option>
-                    <option value="6"></option>
-                    <option value="7"></option>
-                    <option value="8"></option>
-                    <option value="9"></option>
-                    <option value="10"></option>
-                </datalist>
-            </div>
-     
             <div class="w-32 h-32 m-auto bg-primary  mt-4 flex items-center justify-center">
                 <input id="botonCotizar" class="p-4 text-white font-black w-32 h-32 bg-primary" type="submit" value="COTIZAR">   
             </div>

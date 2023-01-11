@@ -1,4 +1,4 @@
-/*
+
 class hoteles {
     constructor ({
         nombre,
@@ -15,19 +15,30 @@ class hoteles {
        
 }
 
+
 const hotelAzuanZuites = new hoteles ({
-    name: "HOTEL AZUAN SUITES",
+    nombre: "HOTEL AZUAN SUITES",
     plan: "Desayuno",
     doble: 849000,
     triple: 849000  
-})
+});
 
 const hotelCostaDelSol = new hoteles ({
-    name: "COSTA DEL SOL",
+    nombre: "COSTA DEL SOL",
     plan: "Desayunos, Almuerzos, Comidas",
     doble: 1039000,
-    triple: 1129000  
-})*/
+    triple: 1129000, 
+});
+
+let listadoHoteless = [hotelCostaDelSol, hotelAzuanZuites];
+
+
+
+
+
+
+
+
 
 const $form = document.querySelector('#form');
 $form.addEventListener('submit', (event)=>{
