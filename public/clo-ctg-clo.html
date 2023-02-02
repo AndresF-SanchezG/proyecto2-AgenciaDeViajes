@@ -138,80 +138,67 @@
                 </div>
                 
             </div>
-        </div>
-        <div class="w-11/12 mt-6 m-auto border border-black">
-            <P class="text-blue-700 flex font-bold text-lg justify-center       mt-4">REALIZA TU COTIZACION FACILMENTE</P>
-               
-       
-        <form id="form" class="p-3" action="#">
-            <div id="formulario" class="">
-             <div class="w-11/12 m-auto mt-2 flex justify-center flex-col">
-                    <label class="w-11/12" for="seleccion-hotel">Elige hotel</label>
-                    <input class="w-full border border-black" list="seleccionHotel" id="seleccion-hotel" name="seleccion-hotel">
-                    <datalist id="seleccionHotel">
-                        <option value="AZUAN SUITES">
-                        <option value="COSTA DEL SOL">
-                        <option value="TOLEDO"></option>
-                        <option value="BARAONA"></option>
-                        <option value="HOTEL BAHÍA"></option>
-                        <option value="ATLANTIC CARTAGENA"></option>
-                        <option value="PLAYA CLUB"></option>
-                        <option value="DORADO PLAZA"></option>
-                        <option value="CARTAGENA PLAZA"></option>
-                        <option value="DUBAI-STANDARD"></option>
-                        <option value="DUBAI-VISTA MAR"></option>
-                        <option value="HOTEL CARIBE"></option>
-                    </datalist>
-                </div>
-    
-    
-                <div class="w-11/12 m-auto mt-2 flex justify-center flex-col">
-                    <label class="w-11/12" for="seleccion-habitacion">Elige tipo de habitacion</label>
-                    <input class="w-full border border-black" list="seleccionHabitacion" id="seleccion-habitacion" name="seleccion-habitacion">
-                    <datalist id="seleccionHabitacion">
-                        <option value="DOBLE">
-                        <option value="TRIPLE">
-                    </datalist>
-                </div>
-            
-                <div class="w-11/12 m-auto mt-2 flex justify-center flex-col">
-                    <label class="w-11/12" for="">Digita el numero de adultos</label>
-                    <input name="cantidadAdultos" class="w-full border border-black" list="seleccionCantAdultos" id="cantidadAdultos" name="">
-                    <datalist id="seleccionCantAdultos">
-                        <option value=1>
-                        <option value=2>
-                        <option value=3></option>
-                        <option value=4></option>
-                        <option value=5></option>
-                        <option value=6></option>
-                        <option value=7></option>
-                        <option value=8></option>
-                        <option value=9></option>
-                        <option value=10></option>
-                    </datalist>
-                </div>
-    
-                 <div class="w-11/12 m-auto mt-2 flex justify-center flex-col">
-                    <label class="w-11/12" for="">Digita el numero de niños</label>
-                    <input class="w-full border border-black" list="seleccionCantNiños" id="CantNiños" name="">
-                    <datalist id="seleccionCantNiños">
-                        <option value=1>
-                        <option value=2>
-                        <option value=3></option>
-                        <option value=4></option>
-                        <option value=5></option>
-                        <option value=6></option>
-                        <option value=7></option>
-                        <option value=8></option>
-                        <option value=9></option>
-                        <option value=10></option>
-                    </datalist>
-                </div>
+        </div >
+        <div class="w-11/12 mt-6 m-auto border border-black" >
+            <P class="text-blue-700 flex font-bold text-lg justify-center mt-4">REALIZA TU COTIZACION RAPIDAMENTE</P>
+            <div id="form-container">
+            <form action="" class="h-full", id="formulario">
+                <ul class="mt-4">
+                <li>
+                    <label class="px-4" for="hoteles">Seleccione un hotel</label>
+                </li>
+                <li>
+                    <div class="w-11/12 m-auto mt-2 flex justify-center mb-4">
+                        <select class="py-2 border border-black w-full" name="opciones-hoteles" id="listaHoteles">
+                            <option id="selectDefault" class="" value="0">Selecciona tu Hotel</option>
+                            
+                        </select>       
+                    </div>   
+                    
+                </li>
+
+                <li >
+                    <label class="px-4" for="habitaciones">Selecciona tipo de habitacion</label>
+                </li>
+                <li>
+                    <div class="w-11/12 m-auto mt-2 flex mb-4">
+                        <select class="py-2 border border-black w-full" name="doors-options" id="tipoHabitacion">
+                            <option  selected>Selecciona tipo de habitación</option>
+                            <option value="2">DOBLE</option>
+                            <option value="3">TRIPLE</option> 
+                        </select>
+                    </div>
+                </li>
+
+                <li>
+                    <label class="px-4" for="habitaciones">Ingresa la cantidad de adultos</label>
+                </li>
+                <li>
+                    <div class="w-11/12 m-auto mt-2 flex mb-4">
+                        <select class="py-2 border border-black w-full" name="" id="cantidadAdultos">
+                            <option value="0" selected>Número de adultos</option>
+                        </select>
+                    </div>
+                </li>
+                
+                <li>
+                    <label class="px-4" for="habitaciones">Ingresa la cantidad de niños</label>
+                </li>
+                <li>
+                    <div class="w-11/12 m-auto mt-2 flex mb-8" id="numeroNiños">
+                        <select class="py-2 border border-black w-full" name="" id="cantidadNiños">
+                            <option value="0" selected>Número de niños</option>
+                        </select>
+                    </div>
+                </li>
+                <p><a href=""></a></p>
             </div>
-            <div class="w-32 h-32 m-auto bg-primary  mt-4 flex items-center justify-center">
-                <input id="botonCotizar" class="p-4 text-white font-black w-32 h-32 bg-primary" type="submit" value="COTIZAR">   
+              <div class="flex items-center justify-around p-8 mb-8" id="botons-container">
+                <button id="cotizarBoton"    class="bg-primary p-4 text-white font-black " type="submit" href="">COTIZAR</button>
+              </div>
+           
             </div>
-             
+            </ul>
         </form>
     </div>  
     </div>
@@ -227,7 +214,8 @@
             <div class="text-lg flex justify-center hover:text-white font-bold text-md text-white"><i class="fa fa-instagram"></i>@Aterriza.co</div>
         </div>  
     </footer>
-    <script src="./hoteles.js"></script> 
+    
+    <script src="./data/hoteles.json"></script>
   <script src="./main.js"></script>
 </body>
 </html>
