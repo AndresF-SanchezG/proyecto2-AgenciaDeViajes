@@ -128,7 +128,7 @@
     function calcular(){ 
            
         if(datosCotizacion[0]!=="" && datosCotizacion[1]!=="" && datosCotizacion[2]!=="") {
-            htmlBotonCotizar.addEventListener('click', (evt)=>{
+            htmlBotonCotizar.addEventListener('touch', (evt)=>{
                
                 evt.preventDefault();
                 if(datosCotizacion[2]===0) {
