@@ -18,19 +18,81 @@
         console.log(`Error fetching data:`, error);
     }
 
+   
+    crearTabla(listaHoteles)
     mostrarHoteles(listaHoteles);
-
+    
+   
     htmlSeleccionHotel.addEventListener('click', ()=>{
         let hotelSeleccionado=parseInt(htmlSeleccionHotel.value);
         datosHotelSeleccionado(hotelSeleccionado, listaHoteles)
         
         });
+        
     }
 
+    
     crearNumeroAdultos();
     crearNumeroNiños();
     calcular();
+
+    function crearTabla(hoteles) {
+
+        let props =Object.getOwnPropertyNames(hoteles[0]);
+            console.log(props)
+     
+        let filas = document.getElementById('NombreCeldas');
+        let cantFilas = 5;
+        let nombresFilas = []
     
+        for(let i = 0; i<cantFilas; i++) {
+            let nombreHotel = document.createElement('div');
+          
+            filas.insertAdjacentElement('beforeend', nombreHotel);
+            
+        for(let hotel in nombreHotel) {
+            nombreHotel.setAttribute('id', `C${i}`);
+            nombreHotel.setAttribute('class', "");
+            nombreHotel.classList.add(`w-1/${cantFilas}`, 'items-center', 'justify-center','m-auto');
+                 
+            }
+            
+            nombresFilas[i] = document.getElementById(`C${i}`);
+            console.log(nombresFilas)
+     
+        }
+      
+            nombresFilas[0].textContent = "NOMBRE HOTEL";
+            nombresFilas[1].textContent = "TIPO PLAN";
+            nombresFilas[2].textContent = "VALOR DOBLE";
+            nombresFilas[3].textContent = "VALOR TRIPLE";
+            nombresFilas[4].textContent = "VALOR NIÑOS";
+
+        for(let i=0; i<hoteles.length; i++) {
+            let valoresFilas = document.getElementById('valoresCeldas');
+            let datosHotelesFilas = document.createElement('div')
+           
+            valoresFilas.insertAdjacentElement('beforeend', datosHotelesFilas);
+            datosHotelesFilas.setAttribute('class', "flex");
+            datosHotelesFilas.setAttribute('id', i);
+           
+            
+               
+        for(let j = 0; j<Object.getOwnPropertyNames(hoteles).length; j++) {
+            let datosFilas = document.createElement('div');
+            datosHotelesFilas.insertAdjacentElement('beforeend', datosFilas);
+            datosFilas.setAttribute('id',`F${j}`);
+            let datos = document.getElementById(`F${j}`)
+            console.log(datos)
+                     
+        }
+           
+            
+        
+        }
+
+    }
+            
     function mostrarHoteles(hoteles) {
         hoteles.forEach(hotel => {
             createHotel(hotel);    
@@ -44,7 +106,7 @@
         contenedorHotel.setAttribute("value",hotel.id);
         htmlSeleccionHotel.appendChild(contenedorHotel);
         contenedorHotel.textContent = hotel.name; 
-        console.log(contenedorHotel); 
+         
     }
 
     function datosHotelSeleccionado(hotelSeleccionado, hoteles) {
@@ -56,6 +118,7 @@
                     plan: hoteles[i].plan,
                     habitacionDoble : hoteles[i].tipoHabitacion.doble,
                     habitacionTriple : hoteles[i].tipoHabitacion.triple,
+                    habitacionTriple : hoteles[i].tipoHabitacion.niños,
             }
             imprimirTarifas(datosHotelElegido)  
              } 
@@ -72,14 +135,14 @@
                     let valorTipoHabitacion = datosHotelElegido.habitacionDoble;
                     datosCotizacion[0] = valorTipoHabitacion;
 
-                    console.log(datosCotizacion);
+                    
                
                 }
 
                 if(habitacionSeleccionada==3) {
                     let valorTipoHabitacion = datosHotelElegido.habitacionTriple;
                     datosCotizacion[0] = valorTipoHabitacion;
-                    console.log(datosCotizacion);   
+                       
                 } 
    
              });  
@@ -87,7 +150,7 @@
 
     function crearNumeroAdultos() {
         let htmlNumeroAdultos = document.getElementById('cantidadAdultos');
-        
+         
         for(let i=1;i<=9; i++) {
             let cantAdultos = document.createElement('option');
             htmlNumeroAdultos.appendChild(cantAdultos);
@@ -101,7 +164,8 @@
             console.log(`La cantidad de adultos son ${adultos}`);
             console.log(typeof adultos); 
             datosCotizacion[1]= adultos;
-            console.log(datosCotizacion);   
+            htmlBotonCotizar.disabled = false; 
+               
         })   
     }
 
@@ -118,22 +182,20 @@
           
             let niños=parseInt(htmlNumeroNiños.value);
             datosCotizacion[2]= niños;
-            console.log(datosCotizacion);
-            console.log(`La cantidad de niños son ${niños}`);  
+            
         });
-
-        htmlBotonCotizar.disabled = false;
+ 
     }
 
     function calcular(){ 
-           
+        
         if(datosCotizacion[0]!=="" && datosCotizacion[1]!=="" && datosCotizacion[2]!=="") {
-            htmlBotonCotizar.addEventListener('touch', (evt)=>{
+            htmlBotonCotizar.addEventListener('click', (evt)=>{
                
                 evt.preventDefault();
                 if(datosCotizacion[2]===0) {
                     let resultado = datosCotizacion[0] * datosCotizacion[1];
-                    console.log(`El resultado es ${resultado}`);
+                   
                     if(isNaN(resultado)) {
                           
                     } else {
@@ -143,7 +205,7 @@
                 } 
                 else  {
                     let resultado = datosCotizacion[0] *datosCotizacion[1] + datosCotizacion[0] * datosCotizacion[2];
-                    console.log(`El resultado es ${resultado}`);
+                   
                     if(isNaN(resultado)) {
 
                     } else {
@@ -192,13 +254,13 @@
                 datosCotizacion=[];
                 resultado=0;
                 datosCotizacion[2]=0;
-                initialize(datosCotizacion);
-                htmlBotonCotizar.disabled = false; 
+                initialize();
+                //htmlBotonCotizar.disabled = false; 
             }
 
-       
+        
     
-            
+        
 
             
            
