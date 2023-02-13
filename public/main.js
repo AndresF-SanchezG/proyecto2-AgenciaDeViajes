@@ -1,6 +1,9 @@
     let htmlBotonCotizar = document.getElementById('cotizarBoton');
     let datosCotizacion=[];
-
+    let propiedad = [];
+    let destino = document.getElementById('ruta')
+    let nombreColumnas = document.getElementById('NombreColumnas')
+    
     initialize()
     htmlBotonCotizar.disabled = true;
     async function initialize() {
@@ -18,11 +21,9 @@
         console.log(`Error fetching data:`, error);
     }
 
-   
     crearTabla(listaHoteles)
     mostrarHoteles(listaHoteles);
     
-   
     htmlSeleccionHotel.addEventListener('click', ()=>{
         let hotelSeleccionado=parseInt(htmlSeleccionHotel.value);
         datosHotelSeleccionado(hotelSeleccionado, listaHoteles)
@@ -36,68 +37,73 @@
     crearNumeroNiños();
     calcular();
 
+
     function crearTabla(hoteles) {
-
-        let props =Object.getOwnPropertyNames(hoteles[0]);
-            console.log(props)
-     
-        let filas = document.getElementById('NombreCeldas');
-        let cantFilas = 5;
-        let nombresFilas = []
+        let propiedades = Object.getOwnPropertyNames(hoteles[0]);
+        propiedades.shift();
+        //let columnas = document.getElementById('NombreCeldas');
+        let cantcolumnas = propiedades.length;
+        console.log(cantcolumnas)
     
-        for(let i = 0; i<cantFilas; i++) {
+        for(let i = 0; i<cantcolumnas; i++) {
             let nombreHotel = document.createElement('div');
-          
-            filas.insertAdjacentElement('beforeend', nombreHotel);
-            
-        for(let hotel in nombreHotel) {
-            nombreHotel.setAttribute('id', `C${i}`);
-            nombreHotel.setAttribute('class', "");
-            nombreHotel.classList.add(`w-1/${cantFilas}`, 'items-center', 'justify-center','m-auto');
-                 
-            }
-            
-            nombresFilas[i] = document.getElementById(`C${i}`);
-            console.log(nombresFilas)
-     
+            //columnas.insertAdjacentElement('beforeend', nombreHotel);
+            destino.appendChild(nombreHotel);
+            //nombreHotel.setAttribute('id', `C${i}`);
+            nombreHotel.setAttribute('id', i);  
+            //console.log(nombreHotel)
+            nombreHotel.classList.add(`w-1/${cantcolumnas}`,'flex')
+           let nombreColumna = document.getElementById(i);
+           nombreColumna.textContent = propiedades[i]
+            console.log(nombreColumna)
+            nombreColumnas.insertAdjacentElement('beforeend', nombreColumna);  
         }
-      
-            nombresFilas[0].textContent = "NOMBRE HOTEL";
-            nombresFilas[1].textContent = "TIPO PLAN";
-            nombresFilas[2].textContent = "VALOR DOBLE";
-            nombresFilas[3].textContent = "VALOR TRIPLE";
-            nombresFilas[4].textContent = "VALOR NIÑOS";
-
         for(let i=0; i<hoteles.length; i++) {
             let valoresFilas = document.getElementById('valoresCeldas');
             let datosHotelesFilas = document.createElement('div')
-           
             valoresFilas.insertAdjacentElement('beforeend', datosHotelesFilas);
-            datosHotelesFilas.setAttribute('class', "flex");
-            datosHotelesFilas.setAttribute('id', i);
-           
             
-               
+            datosHotelesFilas.setAttribute('class', "flex");
+            datosHotelesFilas.classList.add('justify-between');
+            datosHotelesFilas.setAttribute('id', i);
+         
         for(let j = 0; j<Object.getOwnPropertyNames(hoteles).length; j++) {
             let datosFilas = document.createElement('div');
             datosHotelesFilas.insertAdjacentElement('beforeend', datosFilas);
-            datosFilas.setAttribute('id',`F${j}`);
-            let datos = document.getElementById(`F${j}`)
-            console.log(datos)
-                     
-        }
-           
+            datosFilas.setAttribute('id',`${i}.${j}`);
+            datosFilas.classList.add();
+            
+            }
             
         
         }
+        asignar(hoteles, propiedades)
+        
+    } 
+    
 
-    }
+    
+    function asignar(hoteles,propiedades) {
+        for(let id=0; id<hoteles.length; id++) {
+            let variable = document.getElementById(id);
             
+            //console.log(variable);
+            for(let property =0; property<propiedades.length; property++) {
+                let subVariable = document.getElementById(`${id}.${property}`);
+                subVariable.textContent = hoteles[id][propiedades[property]];
+                
+            }
+             
+
+        } 
+         
+    }
+
+    
     function mostrarHoteles(hoteles) {
         hoteles.forEach(hotel => {
             createHotel(hotel);    
-    });
-
+        });
     }
 
     function createHotel(hotel) {
@@ -134,19 +140,14 @@
                 if(habitacionSeleccionada==2) {
                     let valorTipoHabitacion = datosHotelElegido.habitacionDoble;
                     datosCotizacion[0] = valorTipoHabitacion;
-
-                    
-               
                 }
 
                 if(habitacionSeleccionada==3) {
                     let valorTipoHabitacion = datosHotelElegido.habitacionTriple;
-                    datosCotizacion[0] = valorTipoHabitacion;
-                       
+                    datosCotizacion[0] = valorTipoHabitacion;     
                 } 
-   
-             });  
-        }
+            });  
+            }
 
     function crearNumeroAdultos() {
         let htmlNumeroAdultos = document.getElementById('cantidadAdultos');
@@ -156,7 +157,6 @@
             htmlNumeroAdultos.appendChild(cantAdultos);
             cantAdultos.setAttribute("value",i);
             cantAdultos.textContent = i; 
-            
         }
 
         htmlNumeroAdultos.addEventListener('click', ()=>{

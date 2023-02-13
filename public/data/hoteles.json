@@ -3,34 +3,25 @@
         "id": 1,
         "name": "AZUAN SUITES",
         "plan": "Desayuno",
-        "tipoHabitacion": {
-            "doble": 849000,
-            "triple": 849000,
-            "niños": 950000
-             
-        }
+        "doble": 849000,
+        "triple": 849000
+           
     },
     {
         "id":2,
         "name": "COSTA DEL SOL",
         "plan": "Desayunos, Almuerzos, Comidas",
-        "tipoHabitacion": {
-            "doble": 1039000,
-            "triple": 1129000,
-            "niños": 850000
-             
-        }
-    },
+        "doble": 1039000,
+         "triple": 1129000
+   
+        },
+    
     {
         "id":3,
         "name": "TOLEDO",
         "plan": "Desayunos, Almuerzos, Comidas",
-        "tipoHabitacion": {
-            "doble": 939000,
-            "triple": 899000,
-            "niños": 750000
-             
+        "doble": 939000,
+        "triple": 899000   
         }
-    }
 
 ]
