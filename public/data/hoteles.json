@@ -2,26 +2,29 @@
     {
         "id": 1,
         "name": "AZUAN SUITES",
-        "plan": "Desayuno",
+        "plan": "D",
         "doble": 849000,
-        "triple": 849000
+        "triple": 849000,
+        "niño": 915000
            
     },
     {
         "id":2,
         "name": "COSTA DEL SOL",
-        "plan": "Desayunos, Almuerzos, Comidas",
+        "plan": "DAC",
         "doble": 1039000,
-         "triple": 1129000
+         "triple": 1129000,
+         "niño": 915000
    
         },
     
     {
         "id":3,
         "name": "TOLEDO",
-        "plan": "Desayunos, Almuerzos, Comidas",
+        "plan": "DAC",
         "doble": 939000,
-        "triple": 899000   
+        "triple": 899000,
+        "niño": 915000   
         }
 
 ]

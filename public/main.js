@@ -2,10 +2,15 @@
     let datosCotizacion=[];
     let propiedad = [];
     let destino = document.getElementById('ruta')
+    let contenedorBotones = document.getElementById('botons-container');
     let nombreColumnas = document.getElementById('NombreColumnas')
+    let formContainer = document.getElementById('form-container');
+    let mainFormContainer = document.getElementById('main-form-container');
+
     
     initialize()
     htmlBotonCotizar.disabled = true;
+
     async function initialize() {
     
     let htmlSeleccionHotel = document.getElementById('listaHoteles');
@@ -22,6 +27,7 @@
     }
 
     crearTabla(listaHoteles)
+    
     mostrarHoteles(listaHoteles);
     
     htmlSeleccionHotel.addEventListener('click', ()=>{
@@ -32,74 +38,53 @@
         
     }
 
-    
+   
     crearNumeroAdultos();
     crearNumeroNiños();
     calcular();
+    
 
 
     function crearTabla(hoteles) {
         let propiedades = Object.getOwnPropertyNames(hoteles[0]);
         propiedades.shift();
-        //let columnas = document.getElementById('NombreCeldas');
         let cantcolumnas = propiedades.length;
-        console.log(cantcolumnas)
-    
-        for(let i = 0; i<cantcolumnas; i++) {
-            let nombreHotel = document.createElement('div');
-            //columnas.insertAdjacentElement('beforeend', nombreHotel);
-            destino.appendChild(nombreHotel);
-            //nombreHotel.setAttribute('id', `C${i}`);
-            nombreHotel.setAttribute('id', i);  
-            //console.log(nombreHotel)
-            nombreHotel.classList.add(`w-1/${cantcolumnas}`,'flex')
-           let nombreColumna = document.getElementById(i);
-           nombreColumna.textContent = propiedades[i]
-            console.log(nombreColumna)
-            nombreColumnas.insertAdjacentElement('beforeend', nombreColumna);  
-        }
-        for(let i=0; i<hoteles.length; i++) {
-            let valoresFilas = document.getElementById('valoresCeldas');
-            let datosHotelesFilas = document.createElement('div')
-            valoresFilas.insertAdjacentElement('beforeend', datosHotelesFilas);
-            
-            datosHotelesFilas.setAttribute('class', "flex");
-            datosHotelesFilas.classList.add('justify-between');
-            datosHotelesFilas.setAttribute('id', i);
          
-        for(let j = 0; j<Object.getOwnPropertyNames(hoteles).length; j++) {
-            let datosFilas = document.createElement('div');
-            datosHotelesFilas.insertAdjacentElement('beforeend', datosFilas);
-            datosFilas.setAttribute('id',`${i}.${j}`);
-            datosFilas.classList.add();
-            
-            }
-            
-        
-        }
-        asignar(hoteles, propiedades)
-        
-    } 
-    
+        for(let i = 0; i<cantcolumnas; i++) {  
+      
+            let columnas = document.createElement('div');
+            destino.appendChild(columnas);
+            columnas.setAttribute('id', i);  
+            columnas.classList.add(`w-1/${cantcolumnas}`,'flex', 'flex-col','items-center','border-black');
+            let columna =document.getElementById(i);
+           
+          
+            columnas.textContent = propiedades[i].toUpperCase()
+            nombreColumnas.insertAdjacentElement('beforeend', columnas);
 
-    
+        for(let j=0; j<hoteles.length;j++) {
+            let textCeldas = document.createElement('div');
+            textCeldas.setAttribute('id',`${i}.${j}`); 
+            textCeldas.setAttribute('class',""); 
+            columnas.insertAdjacentElement('beforeend', textCeldas);
+            }
+        }
+     
+        asignar(hoteles, propiedades);
+    }
+       
+        
     function asignar(hoteles,propiedades) {
-        for(let id=0; id<hoteles.length; id++) {
-            let variable = document.getElementById(id);
-            
-            //console.log(variable);
-            for(let property =0; property<propiedades.length; property++) {
-                let subVariable = document.getElementById(`${id}.${property}`);
-                subVariable.textContent = hoteles[id][propiedades[property]];
-                
+      
+        for(let i=0; i<hoteles.length; i++) {
+            for(let j=0; j<propiedades.length;j++) {
+                (document.getElementById(`${j}.${i}`)).textContent=hoteles[i][propiedades[j]];
+              
             }
-             
-
-        } 
-         
+            
     }
 
-    
+}
     function mostrarHoteles(hoteles) {
         hoteles.forEach(hotel => {
             createHotel(hotel);    
@@ -122,9 +107,9 @@
                 const datosHotelElegido = {
                     name:hoteles[i].name,
                     plan: hoteles[i].plan,
-                    habitacionDoble : hoteles[i].tipoHabitacion.doble,
-                    habitacionTriple : hoteles[i].tipoHabitacion.triple,
-                    habitacionTriple : hoteles[i].tipoHabitacion.niños,
+                    habitacionDoble : hoteles[i].doble,
+                    habitacionTriple : hoteles[i].triple,
+                    habitacionNiños : hoteles[i].niños,
             }
             imprimirTarifas(datosHotelElegido)  
              } 
@@ -218,27 +203,31 @@
         }  
     
         function imprimirResultado(resultado) {
-                let formContainer = document.getElementById('form-container');
+               
                 let containerTexto = document.createElement('div');
                 let texto = document.createElement('p');
                 formContainer.appendChild(containerTexto);
                 containerTexto.appendChild(texto);
                 containerTexto.setAttribute('class', "");
-                containerTexto.classList.add('w-11/12', 'm-auto', 'text-xl', 'm-auto', 'mb-4');
+                containerTexto.classList.add('w-11/12', 'm-auto', 'text-xl', 'm-auto', 'mb-4','border', 'border-black','mb-8');
                 texto.setAttribute('class', "");
                 texto.classList.add('flex','justify-center');
                 texto.textContent = `El valor de tu plan elegido es ${resultado} `;
                 crearBotonLimpiar(containerTexto, texto);
-                htmlBotonCotizar.disabled = true;    
+                htmlBotonCotizar.disabled = true; 
+                crearCuadroDecision()   
 
                 }   
             }
                      
             function crearBotonLimpiar(containerTexto, texto, resultado) {
-               let contenedorBotones = document.getElementById('botons-container');
+             
                 let botonLimpiar = document.createElement('button');
                 contenedorBotones.insertAdjacentElement('beforeend', botonLimpiar);
+                htmlBotonCotizar.classList.remove('m-auto');
+                contenedorBotones.classList.add('justify-around','mb-8');
                 botonLimpiar.setAttribute('class', "");
+                botonLimpiar.setAttribute('type', "buttom");
                 botonLimpiar.classList.add('p-4', 'bg-primary', 'font-black', 'text-white');
                 botonLimpiar.textContent = 'LIMPIAR';
                 botonLimpiar.addEventListener('click', ()=>{
@@ -248,6 +237,7 @@
 
             function borrarBotonLimpiar(contenedorBotones, botonLimpiar,containerTexto, texto) {
                 let formulario = document.getElementById('formulario');
+                containerTexto.classList.remove('border', 'border-black');
                 contenedorBotones.removeChild(botonLimpiar);
                 containerTexto.removeChild(texto);
                 formulario.reset();
@@ -255,11 +245,37 @@
                 resultado=0;
                 datosCotizacion[2]=0;
                 initialize();
+                celdas="";
                 //htmlBotonCotizar.disabled = false; 
             }
 
-        
-    
+
+            function crearCuadroDecision() {
+                let cuadroDecision = document.createElement('div');
+                cuadroDecision.setAttribute('class', "");
+                cuadroDecision.classList.add('w-11/12','border', 'border-black','m-auto','mt-6','h-24');
+                mainFormContainer.insertAdjacentElement('afterend', cuadroDecision);
+                let titulo = document.createElement('p');
+                cuadroDecision.insertAdjacentElement('beforeend', titulo);
+                titulo.setAttribute('class', "");
+                titulo.classList.add('text-blue-700', 'flex', 'font-bold', 'text-lg', 'justify-center','mt-4', 'items-center')
+                titulo.textContent="QUE DESEAS HACER?"
+                let pagar = document.createElement('div');
+                cuadroDecision.insertAdjacentElement('beforeend', pagar);
+                pagar.setAttribute('class', "");
+                pagar.classList.add('w-24','h-48','flex', 'justify-center', 'mt-6');
+                let imgContainer = document.createElement('div');
+                imgContainer.setAttribute("class",'');
+                pagar.insertAdjacentElement('beforeend', imgContainer);
+                imgContainer.classList.add('w-20','h-48', 'border', 'border-black', 'overflow-hidden');
+                let img = document.createElement('img');
+                img.classList.add('p-8');
+                imgContainer.insertAdjacentElement('beforeend', img);
+               // img.setAttribute('src','https://multimedia.epayco.co/epayco-landing/btns/Boton-epayco-linea.png');
+
+                
+            
+            }
         
 
             
