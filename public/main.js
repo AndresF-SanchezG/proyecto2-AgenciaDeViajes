@@ -177,7 +177,7 @@
         if(datosCotizacion[0]!=="" && datosCotizacion[1]!=="" && datosCotizacion[2]!=="") {
             htmlBotonCotizar.addEventListener('click', (evt)=>{
                
-                evt.preventDefault();
+                //evt.preventDefault();
                 if(datosCotizacion[2]===0) {
                     let resultado = datosCotizacion[0] * datosCotizacion[1];
                    
