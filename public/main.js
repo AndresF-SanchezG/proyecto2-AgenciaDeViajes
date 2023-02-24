@@ -206,7 +206,8 @@
                
                 let containerTexto = document.createElement('div');
                 let texto = document.createElement('p');
-                formContainer.appendChild(containerTexto);
+                formContainer.insertAdjacentElement('afterend', containerTexto);
+                //formContainer.appendChild(containerTexto);
                 containerTexto.appendChild(texto);
                 containerTexto.setAttribute('class', "");
                 containerTexto.classList.add('w-11/12', 'm-auto', 'text-xl', 'm-auto', 'mb-4','border', 'border-black','mb-8');
@@ -215,9 +216,21 @@
                 texto.textContent = `El valor de tu plan elegido es ${resultado} `;
                 crearBotonLimpiar(containerTexto, texto);
                 htmlBotonCotizar.disabled = true; 
-                crearCuadroDecision()   
+                crearCuadroDecision(containerTexto)   
 
                 }   
+            }
+
+            function crearCuadroDecision(containerTexto) {
+                let containerDecision = document.createElement('div');
+                containerDecision.setAttribute('class', '');
+                containerDecision.classList.add('w-11/12','border', 'border-black','m-auto');
+                let textoDivDecision = document.createElement('p');
+                containerTexto.insertAdjacentElement('afterend', containerDecision);
+                containerDecision.appendChild(textoDivDecision);
+                textoDivDecision.textContent = '¿QUE DESEAS HACER?';
+                textoDivDecision.setAttribute('class', '');
+                textoDivDecision.classList.add('text-blue-700','flex', 'items-center', 'justify-center', 'font-bold')
             }
                      
             function crearBotonLimpiar(containerTexto, texto, resultado) {
@@ -249,7 +262,7 @@
                 //htmlBotonCotizar.disabled = false; 
             }
 
-
+/*
             function crearCuadroDecision() {
                 let cuadroDecision = document.createElement('div');
                 cuadroDecision.setAttribute('class', "");
@@ -278,7 +291,7 @@
             }
         
 
-            
+      */      
            
             
            
