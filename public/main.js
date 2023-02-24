@@ -93,7 +93,7 @@
 
     function createHotel(hotel) {
         htmlSeleccionHotel = document.querySelector('#listaHoteles');
-        contenedorHotel = document.createElement('option');
+        let contenedorHotel = document.createElement('option');
         contenedorHotel.setAttribute("value",hotel.id);
         htmlSeleccionHotel.appendChild(contenedorHotel);
         contenedorHotel.textContent = hotel.name; 
@@ -214,14 +214,14 @@
                 texto.setAttribute('class', "");
                 texto.classList.add('flex','justify-center');
                 texto.textContent = `El valor de tu plan elegido es ${resultado} `;
-                crearBotonLimpiar(containerTexto, texto);
+             
                 htmlBotonCotizar.disabled = true; 
-                crearCuadroDecision(containerTexto)   
+                crearCuadroDecision(containerTexto, texto)   
 
                 }   
             }
 
-            function crearCuadroDecision(containerTexto) {
+            function crearCuadroDecision(containerTexto, texto) {
                 let containerDecision = document.createElement('div');
                 containerDecision.setAttribute('class', '');
                 containerDecision.classList.add('w-11/12','border', 'border-black','m-auto');
@@ -231,9 +231,10 @@
                 textoDivDecision.textContent = '¿QUE DESEAS HACER?';
                 textoDivDecision.setAttribute('class', '');
                 textoDivDecision.classList.add('text-blue-700','flex', 'items-center', 'justify-center', 'font-bold')
+                crearBotonLimpiar(containerTexto, texto, containerDecision, textoDivDecision);
             }
                      
-            function crearBotonLimpiar(containerTexto, texto, resultado) {
+            function crearBotonLimpiar(containerTexto, texto, resultado, containerDecision, textoDivDecision) {
              
                 let botonLimpiar = document.createElement('button');
                 contenedorBotones.insertAdjacentElement('beforeend', botonLimpiar);
@@ -244,54 +245,28 @@
                 botonLimpiar.classList.add('p-4', 'bg-primary', 'font-black', 'text-white');
                 botonLimpiar.textContent = 'LIMPIAR';
                 botonLimpiar.addEventListener('click', ()=>{
-                borrarBotonLimpiar(contenedorBotones, botonLimpiar,containerTexto, texto, resultado);       
+                borrarBotonLimpiar(contenedorBotones, botonLimpiar,containerTexto, texto, resultado, textoDivDecision);       
                 });
             }
 
-            function borrarBotonLimpiar(contenedorBotones, botonLimpiar,containerTexto, texto) {
-                let formulario = document.getElementById('formulario');
+            function borrarBotonLimpiar(contenedorBotones, botonLimpiar,containerTexto, texto, containerDecision, textoDivDecision) {
+                
                 containerTexto.classList.remove('border', 'border-black');
                 contenedorBotones.removeChild(botonLimpiar);
                 containerTexto.removeChild(texto);
+                containerDecision.classList.remove('border', 'border-black');
+                containerDecision.remove(textoDivDecision);
                 formulario.reset();
+                nombreColumnas.reset();
                 datosCotizacion=[];
                 resultado=0;
                 datosCotizacion[2]=0;
                 initialize();
-                celdas="";
+              
                 //htmlBotonCotizar.disabled = false; 
             }
 
-/*
-            function crearCuadroDecision() {
-                let cuadroDecision = document.createElement('div');
-                cuadroDecision.setAttribute('class', "");
-                cuadroDecision.classList.add('w-11/12','border', 'border-black','m-auto','mt-6','h-24');
-                mainFormContainer.insertAdjacentElement('afterend', cuadroDecision);
-                let titulo = document.createElement('p');
-                cuadroDecision.insertAdjacentElement('beforeend', titulo);
-                titulo.setAttribute('class', "");
-                titulo.classList.add('text-blue-700', 'flex', 'font-bold', 'text-lg', 'justify-center','mt-4', 'items-center')
-                titulo.textContent="QUE DESEAS HACER?"
-                let pagar = document.createElement('div');
-                cuadroDecision.insertAdjacentElement('beforeend', pagar);
-                pagar.setAttribute('class', "");
-                pagar.classList.add('w-24','h-48','flex', 'justify-center', 'mt-6');
-                let imgContainer = document.createElement('div');
-                imgContainer.setAttribute("class",'');
-                pagar.insertAdjacentElement('beforeend', imgContainer);
-                imgContainer.classList.add('w-20','h-48', 'border', 'border-black', 'overflow-hidden');
-                let img = document.createElement('img');
-                img.classList.add('p-8');
-                imgContainer.insertAdjacentElement('beforeend', img);
-               // img.setAttribute('src','https://multimedia.epayco.co/epayco-landing/btns/Boton-epayco-linea.png');
-
-                
-            
-            }
-        
-
-      */      
+    
            
             
            
