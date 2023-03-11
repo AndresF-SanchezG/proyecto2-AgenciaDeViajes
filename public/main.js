@@ -6,6 +6,13 @@
     let nombreColumnas = document.getElementById('NombreColumnas')
     let formContainer = document.getElementById('form-container');
     let mainFormContainer = document.getElementById('main-form-container');
+    let formulario = document.getElementById('formulario')
+    let mainContainer = document.getElementById('main');
+    let tablaPrincipal = document.getElementById('tablaOfertasHoteles');
+    let htmlNumeroAdultos = document.getElementById('cantidadAdultos');
+    let htmlNumeroNiños = document.getElementById('cantidadNiños');
+    htmlSeleccionHotel = document.querySelector('#listaHoteles');
+    let continerDecision = document.getElementById('containerDecision')
 
     
     initialize()
@@ -35,13 +42,15 @@
         datosHotelSeleccionado(hotelSeleccionado, listaHoteles)
         
         });
+      
+       
         
     }
 
-   
     crearNumeroAdultos();
     crearNumeroNiños();
     calcular();
+    
     
 
 
@@ -135,7 +144,7 @@
             }
 
     function crearNumeroAdultos() {
-        let htmlNumeroAdultos = document.getElementById('cantidadAdultos');
+      
          
         for(let i=1;i<=9; i++) {
             let cantAdultos = document.createElement('option');
@@ -155,7 +164,7 @@
     }
 
     function crearNumeroNiños() {
-        let htmlNumeroNiños = document.getElementById('cantidadNiños');
+   
         for(let i=0;i<=9; i++) {
             let cantNiños = document.createElement('option');
             htmlNumeroNiños.appendChild(cantNiños);
@@ -176,7 +185,9 @@
         
         if(datosCotizacion[0]!=="" && datosCotizacion[1]!=="" && datosCotizacion[2]!=="") {
             htmlBotonCotizar.addEventListener('click', (evt)=>{
-               
+                contenedorBotones.remove(htmlBotonCotizar)
+               formulario.style.display = 'none'
+                //formContainer.remove(formulario)
                 //evt.preventDefault();
                 if(datosCotizacion[2]===0) {
                     let resultado = datosCotizacion[0] * datosCotizacion[1];
@@ -202,68 +213,84 @@
             })
         }  
     
+    
         function imprimirResultado(resultado) {
                
                 let containerTexto = document.createElement('div');
                 let texto = document.createElement('p');
-                formContainer.insertAdjacentElement('afterend', containerTexto);
+                mainFormContainer.appendChild(containerTexto);
                 //formContainer.appendChild(containerTexto);
                 containerTexto.appendChild(texto);
                 containerTexto.setAttribute('class', "");
-                containerTexto.classList.add('w-11/12', 'm-auto', 'text-xl', 'm-auto', 'mb-4','border', 'border-black','mb-8');
+                containerTexto.classList.add('w-11/12', 'm-auto', 'text-xl', 'm-auto','mt-4', 'mb-4','border', 'border-black');
                 texto.setAttribute('class', "");
                 texto.classList.add('flex','justify-center');
                 texto.textContent = `El valor de tu plan elegido es ${resultado} `;
              
                 htmlBotonCotizar.disabled = true; 
-                crearCuadroDecision(containerTexto, texto)   
+                crearCuadroDecision(containerTexto, texto, formContainer)   
 
                 }   
             }
 
-            function crearCuadroDecision(containerTexto, texto) {
+            function crearCuadroDecision(containerTexto, texto, formContainer) {
                 let containerDecision = document.createElement('div');
                 containerDecision.setAttribute('class', '');
-                containerDecision.classList.add('w-11/12','border', 'border-black','m-auto');
+                containerDecision.setAttribute('id', 'containerDecision');
+
+                containerDecision.classList.add('w-11/12','border', 'border-black','m-auto','justify-center', 'items-center', 'mb-4');
                 let textoDivDecision = document.createElement('p');
                 containerTexto.insertAdjacentElement('afterend', containerDecision);
                 containerDecision.appendChild(textoDivDecision);
                 textoDivDecision.textContent = '¿QUE DESEAS HACER?';
                 textoDivDecision.setAttribute('class', '');
-                textoDivDecision.classList.add('text-blue-700','flex', 'items-center', 'justify-center', 'font-bold')
-                crearBotonLimpiar(containerTexto, texto, containerDecision, textoDivDecision);
+                textoDivDecision.classList.add('text-blue-700','flex', 'items-center', 'justify-center', 'font-bold', 'text-lg', 'mt-4');
+                crearBotones(containerTexto, texto, containerDecision, textoDivDecision, formContainer);
             }
-                     
-            function crearBotonLimpiar(containerTexto, texto, resultado, containerDecision, textoDivDecision) {
+
+            function crearBotones(containerTexto, texto, resultado, containerDecision, textoDivDecision, formContainer) {
+
+                let botonPagar = document.createElement('button');
+                let ancleBotonPagar = document.createElement('a');
+                console.log(botonPagar);
+                console.log(ancleBotonPagar);
+                ancleBotonPagar.setAttribute('href',"./procesoPago.html");
+                botonPagar.insertAdjacentElement('afterbegin', ancleBotonPagar);
+                ancleBotonPagar.textContent='PAGAR - REVISEMOS NUESTROS ACUERDOS'
+                botonPagar.setAttribute('class', "");
+                botonPagar.classList.add('w-11/12','rounded-md','flex','p-4', 'bg-primary', 'font-black', 'text-white','m-auto','justify-center', 'items-center','mt-4', 'mb-4','text-xs');
+
+                containerDecision.insertAdjacentElement('afterend', botonPagar);
+
+
+                let botonDejarUnMensaje = document.createElement('button');
+                botonDejarUnMensaje.setAttribute('class', "");
+                botonDejarUnMensaje.classList.add('w-11/12','rounded-md','flex','p-4', 'bg-primary', 'font-black', 'text-white','m-auto','justify-center', 'items-center','mt-4', 'mb-4','text-xs');
+                botonDejarUnMensaje.textContent = `PREFIERO ENVIAR UN MENSAJE`
+                botonPagar.insertAdjacentElement('afterend', botonDejarUnMensaje);
+
+                let MensajeWhatsapp = document.createElement('button');
+                MensajeWhatsapp.setAttribute('class', "");
+                MensajeWhatsapp.classList.add('w-11/12','rounded-md','flex','p-4', 'bg-primary', 'font-black', 'text-white','m-auto','justify-center', 'items-center','mt-4', 'mb-4','text-xs');
+                MensajeWhatsapp.textContent = `PREFIERO DEJAR UN MENSAJE WHATSAPP`
+                botonDejarUnMensaje.insertAdjacentElement('afterend', MensajeWhatsapp);
              
-                let botonLimpiar = document.createElement('button');
-                contenedorBotones.insertAdjacentElement('beforeend', botonLimpiar);
+                let botonNuevaCotizacion = document.createElement('button');
+                botonNuevaCotizacion.setAttribute('class', "");
+                botonNuevaCotizacion.classList.add('w-11/12','rounded-md','flex','p-4', 'bg-primary', 'font-black', 'text-white','m-auto','justify-center', 'items-center','mt-4', 'mb-4','text-xs');
+                MensajeWhatsapp.insertAdjacentElement('afterend', botonNuevaCotizacion);
                 htmlBotonCotizar.classList.remove('m-auto');
                 contenedorBotones.classList.add('justify-around','mb-8');
-                botonLimpiar.setAttribute('class', "");
-                botonLimpiar.setAttribute('type', "buttom");
-                botonLimpiar.classList.add('p-4', 'bg-primary', 'font-black', 'text-white');
-                botonLimpiar.textContent = 'LIMPIAR';
-                botonLimpiar.addEventListener('click', ()=>{
-                borrarBotonLimpiar(contenedorBotones, botonLimpiar,containerTexto, texto, resultado, textoDivDecision);       
+                botonNuevaCotizacion.textContent = 'NUEVA COTIZACION';
+
+                botonNuevaCotizacion.addEventListener('click', ()=>{
+                formulario.style.display = 'block'
+                nuevaCotizacion();       
                 });
             }
 
-            function borrarBotonLimpiar(contenedorBotones, botonLimpiar,containerTexto, texto, containerDecision, textoDivDecision) {
-                
-                containerTexto.classList.remove('border', 'border-black');
-                contenedorBotones.removeChild(botonLimpiar);
-                containerTexto.removeChild(texto);
-                containerDecision.classList.remove('border', 'border-black');
-                containerDecision.remove(textoDivDecision);
-                formulario.reset();
-                nombreColumnas.reset();
-                datosCotizacion=[];
-                resultado=0;
-                datosCotizacion[2]=0;
-                initialize();
-              
-                //htmlBotonCotizar.disabled = false; 
+            function nuevaCotizacion() {
+               location.reload(); 
             }
 
     
