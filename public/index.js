@@ -1,19 +1,20 @@
     let htmlBotonCotizar = document.getElementById('cotizarBoton');
     let datosCotizacion=[];
-    let propiedad = [];
     let destino = document.getElementById('ruta')
     let contenedorBotones = document.getElementById('botons-container');
     let nombreColumnas = document.getElementById('NombreColumnas')
     let formContainer = document.getElementById('form-container');
     let mainFormContainer = document.getElementById('main-form-container');
     let formulario = document.getElementById('formulario')
-    let mainContainer = document.getElementById('main');
-    let tablaPrincipal = document.getElementById('tablaOfertasHoteles');
     let htmlNumeroAdultos = document.getElementById('cantidadAdultos');
     let htmlNumeroNiños = document.getElementById('cantidadNiños');
-    htmlSeleccionHotel = document.querySelector('#listaHoteles');
-    let continerDecision = document.getElementById('containerDecision')
-
+    let htmlSeleccionHotel = document.querySelector('#listaHoteles');
+    let acomodacionCheck = document.getElementById('checkContainer');
+    let habitacionSeleccionadaCheck;
+    let adultosCheck;
+    adultosCheck;
+    let niñosCheck;
+    let botonPagar = document.createElement('button');
     
     initialize()
     htmlBotonCotizar.disabled = true;
@@ -50,6 +51,8 @@
     crearNumeroAdultos();
     crearNumeroNiños();
     calcular();
+   
+    
     
     
 
@@ -65,7 +68,7 @@
             destino.appendChild(columnas);
             columnas.setAttribute('id', i);  
             columnas.classList.add(`w-1/${cantcolumnas}`,'flex', 'flex-col','items-center','border-black');
-            let columna =document.getElementById(i);
+           
            
           
             columnas.textContent = propiedades[i].toUpperCase()
@@ -109,7 +112,7 @@
          
     }
 
-    function datosHotelSeleccionado(hotelSeleccionado, hoteles) {
+     function datosHotelSeleccionado(hotelSeleccionado, hoteles) {
         for(let i=0; i<hoteles.length; i++) {
             if(hotelSeleccionado===hoteles[i].id) {
       
@@ -125,27 +128,41 @@
             }      
          }
 
-        function imprimirTarifas(datosHotelElegido, adultos) {
-           console.log(adultos);
-            let contenedorHotel = document.querySelector('#tipoHabitacion');
-           
+         function imprimirTarifas(datosHotelElegido, adultos) {
+            let contenedorHotel = document.querySelector('#tipoHabitacion');  
             contenedorHotel.addEventListener('click', ()=>{
                 let habitacionSeleccionada=parseInt(contenedorHotel.value);
                 if(habitacionSeleccionada==2) {
                     let valorTipoHabitacion = datosHotelElegido.habitacionDoble;
                     datosCotizacion[0] = valorTipoHabitacion;
+                    
+                
+                    
                 }
+
 
                 if(habitacionSeleccionada==3) {
                     let valorTipoHabitacion = datosHotelElegido.habitacionTriple;
-                    datosCotizacion[0] = valorTipoHabitacion;     
-                } 
-            });  
+                    datosCotizacion[0] = valorTipoHabitacion;
+
+                   
+                      
+                }
+
+                
+                habitacionSeleccionadaCheck = habitacionSeleccionada;
+                console.log("El check es " + habitacionSeleccionadaCheck)
+                    
+            }); 
+            
+           
             }
 
+           
+          
     function crearNumeroAdultos() {
       
-         
+        
         for(let i=1;i<=9; i++) {
             let cantAdultos = document.createElement('option');
             htmlNumeroAdultos.appendChild(cantAdultos);
@@ -156,16 +173,21 @@
         htmlNumeroAdultos.addEventListener('click', ()=>{
             let adultos=parseInt(htmlNumeroAdultos.value); 
             console.log(`La cantidad de adultos son ${adultos}`);
-            console.log(typeof adultos); 
+            
             datosCotizacion[1]= adultos;
             htmlBotonCotizar.disabled = false; 
+            //crearNumeroNiños(habitacionSeleccionada, adultos);
+            adultosCheck = adultos;
+            console.log("El check de los adultos es " + adultosCheck)
                
-        })   
+        })
+        
+        
     }
 
     function crearNumeroNiños() {
-   
-        for(let i=0;i<=9; i++) {
+        
+        for(let i=1;i<=9; i++) {
             let cantNiños = document.createElement('option');
             htmlNumeroNiños.appendChild(cantNiños);
             cantNiños.setAttribute("value",i);
@@ -173,22 +195,28 @@
         }
             datosCotizacion[2]=0;
             htmlNumeroNiños.addEventListener('click', ()=>{
-          
-            let niños=parseInt(htmlNumeroNiños.value);
+                let niños = 0;
+            niños=parseInt(htmlNumeroNiños.value);
             datosCotizacion[2]= niños;
             
+            niñosCheck = niños;
+            console.log("El check niños es " + niños)
+            
         });
+
+        
  
     }
 
     function calcular(){ 
-        
+       
+       
         if(datosCotizacion[0]!=="" && datosCotizacion[1]!=="" && datosCotizacion[2]!=="") {
             htmlBotonCotizar.addEventListener('click', (evt)=>{
+                verificarAcomodacion()
                 contenedorBotones.remove(htmlBotonCotizar)
-               formulario.style.display = 'none'
-                //formContainer.remove(formulario)
-                //evt.preventDefault();
+                formulario.style.display = 'none'
+         
                 if(datosCotizacion[2]===0) {
                     let resultado = datosCotizacion[0] * datosCotizacion[1];
                    
@@ -196,6 +224,7 @@
                           
                     } else {
                         imprimirResultado(resultado);
+                        
                     }
                      
                 } 
@@ -206,6 +235,7 @@
 
                     } else {
                         imprimirResultado(resultado);
+                        
                     }
                       
                     
@@ -227,7 +257,7 @@
                 texto.classList.add('flex','justify-center');
                 texto.textContent = `El valor de tu plan elegido es ${resultado} `;
              
-                htmlBotonCotizar.disabled = true; 
+                //htmlBotonCotizar.disabled = true; 
                 crearCuadroDecision(containerTexto, texto, formContainer)   
 
                 }   
@@ -250,7 +280,6 @@
 
             function crearBotones(containerTexto, texto, resultado, containerDecision, textoDivDecision, formContainer) {
 
-                let botonPagar = document.createElement('button');
                 let ancleBotonPagar = document.createElement('a');
                 console.log(botonPagar);
                 console.log(ancleBotonPagar);
@@ -259,10 +288,9 @@
                 ancleBotonPagar.textContent='PAGAR - REVISEMOS NUESTROS ACUERDOS'
                 botonPagar.setAttribute('class', "");
                 botonPagar.classList.add('w-11/12','rounded-md','flex','p-4', 'bg-primary', 'font-black', 'text-white','m-auto','justify-center', 'items-center','mt-4', 'mb-4','text-xs');
-
                 containerDecision.insertAdjacentElement('afterend', botonPagar);
-
-
+          
+        
                 let botonDejarUnMensaje = document.createElement('button');
                 botonDejarUnMensaje.setAttribute('class', "");
                 botonDejarUnMensaje.classList.add('w-11/12','rounded-md','flex','p-4', 'bg-primary', 'font-black', 'text-white','m-auto','justify-center', 'items-center','mt-4', 'mb-4','text-xs');
@@ -285,13 +313,61 @@
 
                 botonNuevaCotizacion.addEventListener('click', ()=>{
                 formulario.style.display = 'block'
-                nuevaCotizacion();       
+                 
+                reloadd() 
                 });
+
+                botonPagar.addEventListener('click', ()=>{
+                    formulario.style.display = 'block'
+                     
+                    reloadd() 
+                    });
             }
 
-            function nuevaCotizacion() {
+            
+
+            function reloadd() {
                location.reload(); 
+               htmlBotonCotizar.disabled = true;
+                adultosCheck =0;
+                niñosCheck=0;
             }
+
+            function verificarAcomodacion() {
+                
+               
+                // if(!niñosCheck) {
+                //     let cantHabitacionesCheck = adultosCheck % habitacionSeleccionadaCheck;
+                //     let cantHabitaciones = adultosCheck / habitacionSeleccionadaCheck;
+
+                
+                // console.log("La cantidad de habitaciones es " + cantHabitaciones);
+                // console.log("El calculo del residuo es " + cantHabitacionesCheck);
+
+                // } else {
+                //     let edadNiño = document.createElement('div');
+                //     let preguntaEdad = document.createElement('p');
+                //     preguntaEdad.textContent = '¿QUE DESEAS HACER?';
+                //     edadNiño.insertAdjacentElement('afterend', preguntaEdad);
+                //     acomodacionCheck.insertAdjacentElement('afterend', edadNiño);
+                    
+                //     // let cantHabitaciones = (adultosCheck + niñosCheck) / habitacionSeleccionadaCheck;
+                //     //     console.log("La cantidad de habitaciones es " + cantHabitaciones);
+
+                // }
+          
+            
+
+            }
+
+     
+
+
+           
+
+         
+
+
 
     
            
