@@ -4,7 +4,7 @@ const routerApi = require('./routes');
 
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/error.handler');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // app.use(express.json());
 // const whiteList = ['http://localhost:8080', 'http://myapp.co'];
@@ -18,6 +18,10 @@ const port = 3000;
 //   }
 // }
 //app.use((cors));
+
+app.get('/api', (req, res)=>{
+  res.send('Bienvenido a la página de aterriza')
+})
 
 routerApi(app);
 
