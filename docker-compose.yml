@@ -4,11 +4,11 @@ services:
   postgres:
     image: postgres:13
     environment:
-      - POSTGRES_DB=aterriza_BD
-      - POSTGRES_USER=andres
-      - POSTGRES_PASSWORD=afs1167
+      - POSTGRES_DB=DB-clients
+      - POSTGRES_USER=andress
+      - POSTGRES_PASSWORD=afs11677
     ports:
-    - 5452:5432
+    - 5432:5432
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
   pgadmin:
