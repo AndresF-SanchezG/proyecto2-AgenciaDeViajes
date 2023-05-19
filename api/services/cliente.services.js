@@ -2,49 +2,25 @@ const boom = require('@hapi/boom');
 const { faker } = require('@faker-js/faker');
 
 //const pool = require('../libs/postgres')
-const sequelize = require('../libs/sequelize')
+//const sequelize = require('../libs/sequelize')
 const { models } = require('../libs/sequelize')
 
 
 class ClientsService {
-  constructor() {
-    this.clients = [];
-    this.generate();
-    //this.pool = pool;
-    //this.pool.on('error', (err)=>console.error(err));
+  constructor() {}
 
-  }
-
-  generate() {
-    this.clients.push({
-      id: '1',
-      nombre:"Andres",
-      email: "andres@mail.com"
-    },
-    {
-      id: '2',
-      nombre:"Andres",
-      email: "andres@mail.com",
-  })
-}
-
-async create (data) {
-    const newClient = {
-      id: '3',
-      ...data
+    async create (data) {
+    const newUser = await models.User.create(data);
+    return newUser;
 
     }
-      this.clients.push(newClient);
-      return newClient;
-    }
 
-        async find () {
-          const rta = await models.User.findAll();
-          return rta;
+  async find () {
+    const rta = await models.User.findAll();
+    return rta;
 
 
-      //return this.clients
-
+      //return this.client
   }
 
 
@@ -60,37 +36,26 @@ async create (data) {
   // }
 
   async findOne (id) {
-
-    const cliente = this.clients.find(item => item.id === id);
-    if(!cliente) {
-      throw boom.notFound('client not found');
+    const user = await models.User.findByPk(id);
+    if(!user) {
+      throw boom.notFound('user not found')
     }
+    return user;
 
-    return cliente;
 
   }
 
   async update (id, changes) {
-    const index = this.clients.findIndex(item => item.id === id);
-    if(index === -1) {
-      throw boom.notFound('client not found');
-    }
-    const cliente = this.clients[index];
-    this.clients[index] = {
-      ...this.clients,
-      ...changes
-    };
-    return this.clients[index];
+    const user = await this.findOne(id);
+    const rta = await user.update(changes)
+    return rta;
 
   }
 
   async delete (id) {
-    const index = this.clients.findIndex(item => item.id === id);
-    if(index === -1) {
-      throw boom.notFound('client not found');
-    }
-    this.clients.splice(index, 1);
-    return { id };
+    const user = await this.findOne(id);
+   await user.destroy();
+   return { id };
 
   }
 

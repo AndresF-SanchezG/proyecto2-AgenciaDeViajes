@@ -11,10 +11,16 @@ const router = express.Router();
 
 const service = new ClientsService();
 
-router.get('/', async (req, res,)=>{
+router.get('/', async (req, res, next)=>{
+  try {
+    const clientes = await service.find();
+      res.json(clientes)
 
-  const clientess = await service.find();
-  res.json(clientess)
+  } catch(error) {
+    next(error)
+
+  }
+
 
   });
 
@@ -37,11 +43,15 @@ router.get('/', async (req, res,)=>{
 
 router.post('/',
 validatorHandler(createClientSchema, 'body'),
-async (req,res)=>{
-  const body = req.body;
-  const newClient = await service.create(body)
-  res.status(201).json(newClient);
-});
+async (req,res, next)=>{
+  try {
+    const body = req.body;
+    const cliente = await service.create(body)
+    res.status(201).json(cliente);
+
+  } catch(error) {
+  next(error);
+}});
 
 router.patch('/:id',
 validatorHandler(getClientSchema, 'params'),
