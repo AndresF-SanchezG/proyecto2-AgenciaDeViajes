@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/tailwind.css">
+    <link rel="icon" type="image/x-icon" href="./image/picture (3).svg">
+    <title>Pago2</title>
+</head>
+<body>
+    <nav class="w-full h-14 bg-primary flex justify-between">
+        <div class="h-auto w-auto">
+            <p class="text-xl text-white font-black p-3">Aterriza.co</p>
+        </div>
+        <div>
+            <a class="flex font-bold text-md text-white pr-3 pt-4" href="index.html">Inicio</a>
+        </div>
+    </nav>
+    <main class="w-full h-full">
+        <div class="mt-1 w-full h-full flex justify-center">
+            <img class="w-11/12 h-60 mt-2.5" src="./image/maxresdefault.jpg" alt="">
+        </div>
+        <div class="mt-1 w-full h-full justify-center ">
+            <h1 class="text-primary flex font-bold text-lg justify-center">Será un placer atenderte!!</h1>
+            <p class="text-blue-700 flex font-bold text-xs justify-center">Dejanos tus datos de contacto</p>
+
+                <form class="w-full m-4 h-full flex flex-col justify-center items-center" id="mainForm" method="post" action="http://localhost:3000/api/v1/datos-clientes/">
+                    <fieldset class="w-11/12 justify-center items-center flex flex-col mt-2" id="optionsBoxContact">
+                        <label for="nombre" id="nombre-label" class=" h-full flex flex-col">Nombre
+                          <input id="nombre" type="text" name="nombre" placeholder="Nombre y apellidos" class="border border-black mt-2" required/>
+                        </label>
+                        <label for="email" id="email-label" class=" h-full flex flex-col mt-4">Correo electrónico
+                          <input id="email" type="email" name="email" placeholder="Ingresa tu nombre" class="border border-black mt-2" required/>
+                        </label>
+                        <label for="telefono" id="telefono-label" class=" h-full flex flex-col mt-4">Número telefónico
+                          <input id="telefono" type="number" name="telefono" placeholder="Ingresa tu nombre" class="border border-black mt-2" required/>
+                        </label>
+                    </fieldset>
+                    <input id="submit" type="submit" value="Enviar" class="w-60% h-2 mt-4 bg-primary text-white font-black p-3"/>
+
+
+            </form>
+        </div>
+    </main>
+
+
+
+    <footer class="w-full h-auto bg-primary mt-6">
+        <div class="flex flex-col justify-center items-center w-full h-auto text-white font-black p-3">
+            <p>Registro Nacional de Turismo 102415</p>
+            <p>NIT 901526231-1</p>
+            <p>Contacto 311 388 21 80</p>
+        </div>
+        <div class="w-full font-black flex-col justify-center">
+            <div class="text-md flex justify-center hover:text-white font-bold text-md text-white text-lg"><i class="fa fa-facebook"></i>@Aterriza.co</div>
+            <div class="text-lg flex justify-center hover:text-white font-bold text-md text-white"><i class="fa fa-instagram"></i>@Aterriza.co</div>
+        </div>
+    </footer>
+
+
+   <script src="" type=""></script>
+</body>
+</html>

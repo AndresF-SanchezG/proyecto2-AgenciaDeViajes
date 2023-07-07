@@ -1,8 +1,5 @@
 const boom = require('@hapi/boom');
 const { faker } = require('@faker-js/faker');
-
-//const pool = require('../libs/postgres')
-//const sequelize = require('../libs/sequelize')
 const { models } = require('../libs/sequelize')
 
 
@@ -15,7 +12,7 @@ class ClientsService {
 
     }
 
-  async find () {
+  async find() {
     const rta = await models.User.findAll();
     return rta;
 

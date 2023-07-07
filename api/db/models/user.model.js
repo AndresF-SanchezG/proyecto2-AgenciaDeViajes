@@ -12,7 +12,7 @@ const UserSchema = {
     nombre: {
     allowNull: false,
     type: DataTypes.STRING,
-    unique: true,
+  
 
   },
 
@@ -22,13 +22,14 @@ const UserSchema = {
     unique: true,
 
   },
-
-  createdAt: {
+  telefono: {
     allowNull: false,
-    type: DataTypes.DATE,
-    field: 'create_at',
-    defaultValue: Sequelize.NOW
+    type: DataTypes.INTEGER,
+    unique: true,
+
   }
+
+
 }
 
 class User extends Model {
