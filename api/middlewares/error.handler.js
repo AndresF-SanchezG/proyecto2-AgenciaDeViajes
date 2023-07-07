@@ -35,6 +35,7 @@ function boomErrorHandler(err, req, res, next) {
       });
     }
     next(err);
+    
   }
 
 
