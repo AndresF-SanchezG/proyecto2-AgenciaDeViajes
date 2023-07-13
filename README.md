@@ -34,6 +34,12 @@ Put into practice knowledge related to:
 ### Interaction with the client (Quotation)
 ![Captura2](https://github.com/AndresF-SanchezG/proyecto2-AgenciaDeViajes/assets/113924667/3cbdd9c6-74ac-4e1e-b390-0ed81bfcff59)
 
+### Quote response
+![Captura2](https://github.com/AndresF-SanchezG/proyecto2-AgenciaDeViajes/assets/113924667/c500c49d-ed1d-4fc8-8e8c-e318f4f20c95)
+
+### Capture customer data
+![Captura2](https://github.com/AndresF-SanchezG/proyecto2-AgenciaDeViajes/assets/113924667/b1a4483f-bbe9-48e4-b8df-9cdabd2a8b2e)
+
 
 # Links
 
