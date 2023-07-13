@@ -40,6 +40,9 @@ Put into practice knowledge related to:
 ### Capture customer data
 ![Captura2](https://github.com/AndresF-SanchezG/proyecto2-AgenciaDeViajes/assets/113924667/b1a4483f-bbe9-48e4-b8df-9cdabd2a8b2e)
 
+### Postgres database
+![Captura2](https://github.com/AndresF-SanchezG/proyecto2-AgenciaDeViajes/assets/113924667/09c2ef0f-e756-4a80-aa5d-0dadc99af208)
+
 
 # Links
 
