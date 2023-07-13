@@ -23,7 +23,8 @@ Put into practice knowledge related to:
 
   ### Main Page
 
-![Captura2](https://github.com/AndresF-SanchezG/challenge-9.0/assets/113924667/38f56255-6331-476a-a680-21f268adf02e)
+![Captura2](https://github.com/AndresF-SanchezG/proyecto2-AgenciaDeViajes/assets/113924667/49baf6ce-1a86-4516-bbf1-d2d0e1f96e12)
+
 
 # Links
 
