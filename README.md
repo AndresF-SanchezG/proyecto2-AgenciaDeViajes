@@ -51,5 +51,5 @@ Put into practice knowledge related to:
 # Author
 
 - Autor - [@AndresF-SanchezG](https://github.com/AndresF-SanchezG)
-- School - [Freecodecamp](https://www.freecodecamp.org/andresSanchez)
-- Challenge - [Cómo crear una aplicación de calculadora HTML desde cero usando JavaScript](https://www.freecodecamp.org/espanol/news/como-crear-una-aplicacion-de-calculadora-html-desde-cero-usando-javascript/)
+- Bibliography - [Freecodecamp](https://www.freecodecamp.org/andresSanchez)[Platzi](https://platzi.com/home)[YouTube][www.youtube.com)
+
