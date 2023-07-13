@@ -51,5 +51,5 @@ Put into practice knowledge related to:
 # Author
 
 - Autor - [@AndresF-SanchezG](https://github.com/AndresF-SanchezG)
-- Bibliography - [Freecodecamp](https://www.freecodecamp.org/andresSanchez)[Platzi](https://platzi.com/home)[YouTube][www.youtube.com)
+- Bibliography - [Freecodecamp](https://www.freecodecamp.org/andresSanchez) [Platzi](https://platzi.com/home) [YouTube][www.youtube.com)
 
