@@ -25,6 +25,12 @@ Put into practice knowledge related to:
 
 ![Captura2](https://github.com/AndresF-SanchezG/proyecto2-AgenciaDeViajes/assets/113924667/49baf6ce-1a86-4516-bbf1-d2d0e1f96e12)
 
+### Availability
+
+![Captura2](https://github.com/AndresF-SanchezG/proyecto2-AgenciaDeViajes/assets/113924667/6d356ca3-31d3-4ba2-bd98-f1d9272496a5)
+
+![Captura2](https://github.com/AndresF-SanchezG/proyecto2-AgenciaDeViajes/assets/113924667/7d1de1fc-1adf-4614-b8eb-181d7a17fb18)
+
 
 # Links
 
