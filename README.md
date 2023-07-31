@@ -46,7 +46,7 @@ Put into practice knowledge related to:
 
 # Links
 
-- Live Site URL: [Vercel deployed app](https://challenge-9-0.vercel.app/)
+- Live Site URL: [Vercel deployed app](https://proyecto2-agencia-de-viajes-kotg.vercel.app/)
 
 # Author
 
